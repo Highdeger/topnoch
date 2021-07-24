@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - NOC</title>
+    <meta name="description" content="Monitoring Solution">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;assets/img/login.jpg&quot;);"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                    </div>
+                                    <div><input class="form-control form-control-user" type="text" id="inputUsername" placeholder="Username" name="username"></div>
+                                    <div><input class="form-control form-control-user" type="password" id="inputPassword" placeholder="Password" name="password"></div>
+                                    <div>
+                                        <div class="custom-control custom-checkbox small">
+                                            <div><input class="form-check-input custom-control-input" type="checkbox" id="inputCheckRemember"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
+                                        </div>
+                                    </div><button class="btn btn-primary btn-block text-white btn-user" onclick="submitAuth()">Login</button>
+                                    <hr>
+                                    <div class="text-center"><a class="small" href="#">Forgot Password?</a></div>
+                                    <div class="text-center"><a class="small" href="#">Create an Account!</a></div>
+                                    <div id="thisSnackbar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/jquery.easing.js"></script>
+    <script src="assets/js/sha256.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    <script>
+        function snackbarTrigger(msg, timeout) {
+            let x = document.getElementById("thisSnackbar")
+            x.innerText = msg
+            x.className = "show"
+            setTimeout(function () {
+                x.className = x.className.replace('show', '')
+            }, timeout)
+        }
+        function submitAuth() {
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let json = JSON.parse(this.responseText)
+                    if (json.is_auth === true) {
+                        goToDiscoveryManager()
+                    } else {
+                        snackbarTrigger("Auth Failed", 2500)
+                    }
+                }
+            }
+            xhttp.open('GET', '/authenticate', true)
+            xhttp.setRequestHeader('Username', document.getElementById('inputUsername').value)
+            xhttp.setRequestHeader('Password', sha256(document.getElementById('inputPassword').value))
+            xhttp.send()
+        }
+        function goToDiscoveryManager() {
+            document.location.href = '/manage/Discovery'
+        }
+    </script>
+</body>
+
+</html>

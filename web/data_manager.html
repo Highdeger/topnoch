@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>/*{{PageTitle}}*/</title>
+    <meta name="description" content="Monitoring Solution">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font.google.nunito.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-compress-arrows-alt"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>NOC</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="/manage/Node"><i class="fa fa-th-large"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fa fa-cubes"></i><span>Discovery</span></a></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" onclick="showDropdownMenu('dropdownDataManager')"><i class="fa fa-database"></i><span>Data Manager</span></a>
+                        <div id="dropdownDataManager" class="dropdown-menu">
+                            <a class="dropdown-item" href="/manage/Node">Node</a>
+                            <a class="dropdown-item" href="/manage/Discovery">Discovery</a>
+                            <a class="dropdown-item" href="/manage/SnmpCredential">Snmp Credential</a>
+                            <a class="dropdown-item" href="/manage/WindowsCredential">Windows Credential</a>
+                            <a class="dropdown-item" href="/manage/LinuxCredential">Linux Credential</a>
+                            <a class="dropdown-item" href="/manage/DeviceCredential">Device Credential</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-tachometer"></i><span>Realtime</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                            </div>
+                        </form>
+                        <ul class="nav navbar-nav flex-nowrap ml-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" onclick="showDropdownMenu('dropdownAlert')"><span class="badge badge-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
+                                    <div id="dropdownAlert" class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in">
+                                        <h6 class="dropdown-header">alerts center</h6><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="mr-3">
+                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
+                                            </div>
+                                            <div><span class="small text-gray-500">December 12, 2019</span>
+                                                <p>A new monthly report is ready to download!</p>
+                                            </div>
+                                        </a><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="mr-3">
+                                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
+                                            </div>
+                                            <div><span class="small text-gray-500">December 7, 2019</span>
+                                                <p>$290.29 has been deposited into your account!</p>
+                                            </div>
+                                        </a><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="mr-3">
+                                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
+                                            </div>
+                                            <div><span class="small text-gray-500">December 2, 2019</span>
+                                                <p>Spending Alert: We've noticed unusually high spending for your account.</p>
+                                            </div>
+                                        </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All Alerts</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" onclick="showDropdownMenu('dropdownMessage')"><i class="fas fa-envelope fa-fw"></i><span class="badge badge-danger badge-counter">7</span></a>
+                                    <div id="dropdownMessage" class="dropdown-menu dropdown-menu-right dropdown-list dropdown-menu-right animated--grow-in">
+                                        <h6 class="dropdown-header">alerts center</h6><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar4.jpeg">
+                                                <div class="bg-success status-indicator"></div>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span></div>
+                                                <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
+                                            </div>
+                                        </a><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar2.jpeg">
+                                                <div class="status-indicator"></div>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate"><span>I have the photos that you ordered last month!</span></div>
+                                                <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
+                                            </div>
+                                        </a><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar3.jpeg">
+                                                <div class="bg-warning status-indicator"></div>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span></div>
+                                                <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
+                                            </div>
+                                        </a><a class="d-flex align-items-center dropdown-item" href="#">
+                                            <div class="dropdown-list-image mr-3"><img class="rounded-circle" src="assets/img/avatars/avatar5.jpeg">
+                                                <div class="bg-success status-indicator"></div>
+                                            </div>
+                                            <div class="font-weight-bold">
+                                                <div class="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span></div>
+                                                <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
+                                            </div>
+                                        </a><a class="text-center dropdown-item small text-gray-500" href="#">Show All Alerts</a>
+                                    </div>
+                                </div>
+                                <div class="shadow dropdown-list dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown"></div>
+                            </li>
+                            <div class="d-none d-sm-block topbar-divider"></div>
+                            <li class="nav-item dropdown no-arrow">
+                                <div class="nav-item dropdown no-arrow">
+                                    <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" onclick="showDropdownMenu('dropdownProfile')">
+                                        <span class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg">
+                                    </a>
+                                    <div id="dropdownProfile" class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            &nbsp;Profile
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            &nbsp;Settings
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            &nbsp;Activity log
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            &nbsp;Logout
+                                        </a>
+                                        <a class="dropdown-item" href="/terminate">
+                                            <i class="fas fa-external-link-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                            &nbsp;Terminate
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">/*{{TablePageTitle}}*/</h3>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">/*{{TableCardTitle}}*/</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="margin-bottom: 8px;">
+                                <div class="col-auto" style="box-shadow: 0px 0px;">
+                                    <div role="group" class="btn-group">
+                                        <button class="btn btn-primary" id="buttonAdd" type="button" onclick="buttonTrigger('add')">Add</button>
+                                        <button class="btn btn-primary" id="buttonEdit" disabled type="button" onclick="buttonTrigger('edit')">Edit</button>
+                                        <button class="btn btn-primary" id="buttonDelete" disabled type="button" onclick="buttonTrigger('delete')">Delete</button>
+                                    </div>
+                                </div>
+                                <div class="col text-right align-self-center" id="tableLoading"><span class="spinner-border spinner-border-sm" role="status"></span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="table-responsive">
+                                        <div class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+                                            <table id="thisTable">
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p id="tableInfo"></p>
+                                </div>
+                            </div>
+                            <div class="modal fade" role="dialog" tabindex="-1" id="thisModal">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modalTitle"></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body" id="modalBody">
+                                            <p id="modalSubtitle"></p>
+                                            /*{{ModalFields}}*/
+                                        </div>
+                                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" id="modalConfirmButton" type="button" onclick="modalConfirmTrigger()">Confirm</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="thisSnackbar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © NOC 2021</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+    <script src="assets/js/jquery.easing.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.select.min.js"></script>
+
+    <link href="assets/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="assets/css/select.dataTables.min.css" rel="stylesheet">
+    <link href="assets/css/internal.css" rel="stylesheet">
+    <script>
+        let tableElement = $('#thisTable')
+        let tableDataTable
+        let tableData = []
+        let tableDataKeys = [] // *:id(int)
+        let selectedIndexes = []
+        let modalElement = $('#thisModal')
+        let modalDefaultValues = {}
+
+        function showTableLoading(isShow) {
+            if (isShow) {
+                document.getElementById("tableLoading").style.display = "block"
+            } else {
+                document.getElementById("tableLoading").style.display = "none"
+            }
+        }
+        function snackbarTrigger(msg, timeout) {
+            let x = document.getElementById("thisSnackbar")
+            x.innerText = msg
+            x.className = "show"
+            setTimeout(function () {
+                x.className = x.className.replace('show', '')
+            }, timeout)
+        }
+        function buttonTrigger(job) {
+            let xhttp = new XMLHttpRequest()
+            let elem = document.getElementById('modalConfirmButton')
+            let modalTitle = document.getElementById('modalTitle')
+            let modalSubtitle = document.getElementById('modalSubtitle')
+
+            switch (job) {
+                case 'add':
+                    modalTitle.innerText = 'Add /*{{StructName}}*/ '
+                    modalSubtitle.innerText = 'Create new /*{{StructName}}*/: '
+                    elem.innerText = 'Save'
+                    elem.onclick = modalConfirmAdd
+
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            let json = JSON.parse(this.responseText)
+                            let fNames = json.fieldNames
+                            for (let i = 0; i < fNames.length; i++) {
+                                document.getElementById('modalField_' + fNames[i]).value = modalDefaultValues[fNames[i]]
+                            }
+                            modalElement.modal('show')
+                        } else if (this.status === 401) {
+                            goToLogin()
+                        }
+                    }
+                    xhttp.open('GET', '/get/fields/edit', true)
+                    xhttp.setRequestHeader('StructName', '/*{{StructName}}*/')
+                    xhttp.send()
+                    break
+
+                case 'edit':
+                    modalTitle.innerText = 'Edit /*{{StructName}}*/ '
+                    modalSubtitle.innerText = 'Update the /*{{StructName}}*/ (id: ' + tableDataKeys[selectedIndexes[0]] + '): '
+                    elem.innerText = 'Update'
+                    elem.onclick = modalConfirmEdit
+
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            let json = JSON.parse(this.responseText)
+
+                            if (json.err === '') {
+                                for (let key in json.row) {
+                                    document.getElementById('modalField_' + key).value = json.row[key]
+                                }
+                                modalElement.modal('show')
+                            }
+                        } else if (this.status === 401) {
+                            goToLogin()
+                        }
+                    }
+                    xhttp.open('GET', '/one', true)
+                    xhttp.setRequestHeader('Key2Select', tableDataKeys[selectedIndexes[0]])
+                    xhttp.send()
+                    break
+
+                case 'delete':
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            console.log(this.responseText)
+                            refreshTableData()
+                        } else if (this.status === 401) {
+                            goToLogin()
+                        }
+                    }
+                    xhttp.open('DELETE', '/delete', true)
+                    let keys = ''
+                    for (let i = 0; i < selectedIndexes.length; i++) {
+                        if (i !== 0) {
+                            keys += ','
+                        }
+                        keys += tableDataKeys[selectedIndexes[i]]
+                    }
+                    xhttp.setRequestHeader('Keys2Delete', keys)
+                    xhttp.send()
+                    break
+            }
+        }
+        function modalConfirmAdd() {
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText)
+                    $('#thisModal').modal('hide')
+                    refreshTableData()
+                } else if (this.status === 401) {
+                    goToLogin()
+                }
+            }
+            xhttp.open('POST', '/add', true)
+            /*{{RequestHeaders}}*/
+            xhttp.send()
+        }
+        function modalConfirmEdit() {
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText)
+                    $('#thisModal').modal('hide')
+                    refreshTableData()
+                } else if (this.status === 401) {
+                    goToLogin()
+                }
+            }
+            xhttp.open('PUT', '/edit', true)
+            xhttp.setRequestHeader('Key2Update', tableDataKeys[selectedIndexes[0]])
+            /*{{RequestHeaders}}*/
+            xhttp.send()
+        }
+        function selectAll() {
+            // TODO: select all items in the table
+            console.log('select all items of the table')
+        }
+        function initTable() {
+            tableDataTable = tableElement.DataTable({
+                width: "100%",
+                scrollX: false,
+                scrollCollapse: false,
+                autoWidth: false,
+                responsive: true,
+                columnDefs: [
+                    {
+                        title: '',
+                        data: 'selection',
+                        orderable: false,
+                        className: 'select-checkbox',
+                        targets: 0
+                    },
+                    /*{{ColumnDefs}}*/
+                ],
+                select: {
+                    style: 'os', // os,single,multi
+                    selector: 'td' // td,td:first-child
+                },
+                order: [[1, 'asc']],
+                stateSave: true,
+                createdRow: function (row, data, dataIndex, cells) {
+                    row.classList.add('unselectable')
+                    // let attr = document.createAttribute("data-dt-row")
+                    // attr.value = ""
+                    // row.setAttributeNode(attr)
+                }
+            })
+
+            tableDataTable.on('select', function (e, dt, type, indexes) {
+                selectedIndexes = tableDataTable.rows({selected: true})[0]
+                if (selectedIndexes.length < 1) {
+                    document.getElementById('buttonEdit').disabled = true
+                    document.getElementById('buttonDelete').disabled = true
+                } else if (selectedIndexes.length < 2) {
+                    document.getElementById('buttonEdit').disabled = false
+                    document.getElementById('buttonDelete').disabled = false
+                } else {
+                    document.getElementById('buttonEdit').disabled = true
+                    document.getElementById('buttonDelete').disabled = false
+                }
+            })
+
+            tableDataTable.on('deselect', function (e, dt, type, indexes) {
+                selectedIndexes = tableDataTable.rows({selected: true})[0]
+                if (selectedIndexes.length < 1) {
+                    document.getElementById('buttonEdit').disabled = true
+                    document.getElementById('buttonDelete').disabled = true
+                } else if (selectedIndexes.length < 2) {
+                    document.getElementById('buttonEdit').disabled = false
+                    document.getElementById('buttonDelete').disabled = false
+                } else {
+                    document.getElementById('buttonEdit').disabled = true
+                    document.getElementById('buttonDelete').disabled = false
+                }
+            })
+
+            tableDataTable.columns.adjust().draw()
+        }
+        function refreshTableData() {
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let json = JSON.parse(this.responseText)
+
+                    if (json.err === '') {
+                        tableDataTable.clear().draw()
+                        tableData = []
+                        tableDataKeys = []
+                        let rowTemp = {}
+                        if (json.rows.length !== 0) {
+                            for (let i = 0; i < json.rows.length; i++) {
+                                let row = json.rows[i]
+                                rowTemp = {}
+                                for (let key in row) {
+                                    rowTemp[key] = row[key]
+                                }
+                                // rowTemp["selection"] = ""
+                                tableData.push(rowTemp)
+                                tableDataKeys.push(json.keys[i])
+                            }
+                            console.log(rowTemp)
+
+                            for (let i = 0; i < tableData.length; i++) {
+                                tableData[i]['selection'] = ""
+                                tableDataTable.row.add(tableData[i]).draw()
+                            }
+                        }
+                        showTableLoading(false)
+
+                    } else if (json.err === 'not found') {
+                        snackbarTrigger('No Data', 2500)
+                        showTableLoading(false)
+
+                    } else {
+                        snackbarTrigger(json.err, 2500)
+                        showTableLoading(false)
+                    }
+                } else if (this.status === 401) {
+                    goToLogin()
+                }
+            }
+            xhttp.open('GET', '/all', true)
+            xhttp.setRequestHeader('StructName', '/*{{StructName}}*/')
+            xhttp.send()
+        }
+        function showDropdownMenu(elemId) {
+            let e = document.getElementById(elemId)
+            if ((e.style.display === 'none') || (e.style.display === '')) {
+                e.style.display = 'block'
+            } else {
+                e.style.display = 'none'
+            }
+        }
+        function goToLogin() {
+            document.location.href = '/'
+        }
+        function discoverButton(elem) {
+            let i = $(elem).closest('tr').index()
+            let rowIndexes = tableDataTable.rows()[0]
+            let selectedDataKey = tableDataKeys[rowIndexes[i]]
+
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                }
+            }
+            xhttp.open('POST', '/discovery/start', true)
+            xhttp.setRequestHeader('DiscoveryKey', selectedDataKey)
+            xhttp.send()
+        }
+        function nodeButton(elem) {
+            let i = $(elem).closest('tr').index()
+            let rowIndexes = tableDataTable.rows()[0]
+            let selectedDataKey = tableDataKeys[rowIndexes[i]]
+
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.open()
+                    document.write(this.responseText)
+                    document.close()
+                }
+            }
+            xhttp.open('GET', '/node/realtime', true)
+            xhttp.setRequestHeader('NodeKey', selectedDataKey)
+            xhttp.send()
+        }
+
+        window.onload = function () {
+            initTable()
+
+            let xhttp = new XMLHttpRequest()
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let json = JSON.parse(this.responseText)
+                    let fNames = json.fieldNames
+                    let fDefaults = json.fieldDefaults
+                    for (let i = 0; i < fNames.length; i++) {
+                        let e = document.getElementById('modalField_' + fNames[i])
+                        if (e === null) {
+                            console.log('not found field -> modalField_' + fNames[i])
+                        }
+                        modalDefaultValues[fNames[i]] = fDefaults[i]
+                    }
+                }
+            }
+            xhttp.open('GET', '/get/fields/edit', true)
+            xhttp.setRequestHeader('StructName', '/*{{StructName}}*/')
+            xhttp.send()
+
+            refreshTableData()
+        }
+    </script>
+</body>
+
+</html>
